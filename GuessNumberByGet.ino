@@ -5,8 +5,8 @@
 WiFiClient   espClient;
 PubSubClient client(espClient);             //สร้างออปเจ็ค สำหรับเชื่อมต่อ mqtt
 //=================================================================================================
-const char* ssid = "VLY";               //wifi name
-const char* password = "14122550";         //wifi password
+const char* ssid = "WIFI";               //wifi name
+const char* password = "PASSWORD";         //wifi password
 //=================================================================================================
 const char* mqtt_broker = "broker.hivemq.com";   //IP mqtt server
 const int   mqtt_port = 1883;               //port mqtt server
