@@ -41,19 +41,19 @@ void callback(char *topic, byte *payload, unsigned int length) {  //ฟังก
     guess = payload[i]-48;
   if(number==guess)
   {
-    client.publish("CE_esp","true!");
+    client.publish("Topic","true!");
     number = random(9);
     Serial.print("number guess :");
     Serial.println(number);
-    client.publish("CE_esp","guess number!");
+    client.publish("Topic","guess number!");
   }
   else if(guess>number)
   {
-    client.publish("CE_esp","more!");
+    client.publish("Topic","more!");
   }
     else if(guess<number)
   {
-    client.publish("CE_esp","less!");
+    client.publish("Topic","less!");
   }
     }
   Serial.println();
@@ -83,9 +83,9 @@ void setup()
   Serial.begin(115200);
   setup_wifi(); //เชื่อมต่อwifi
   reconnect();  //เชื่อมต่อmqtt
-  client.subscribe("CE_mqtt");  //กำหนด topic ที่จะ subscribe
+  client.subscribe("Topic");  //กำหนด topic ที่จะ subscribe
   number = random(9) ;
-  client.publish("CE_esp","guess number!"); //กำหนด topic ที่จะ publish และ valu
+  client.publish("Topic","guess number!"); //กำหนด topic ที่จะ publish และ valu
   Serial.println(number);
 }
 
