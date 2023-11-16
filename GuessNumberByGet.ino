@@ -12,7 +12,7 @@ const char* mqtt_broker = "broker.hivemq.com";   //IP mqtt server
 const int   mqtt_port = 1883;               //port mqtt server
 //=================================================================================================
 
-int number;
+int number; // ตัวแปรที่แทนเลขที่สุ่ม
 
 void setup_wifi() {   //ฟังก์ชั่นเชื่อมต่อwifi
   delay(10);
@@ -31,7 +31,7 @@ void setup_wifi() {   //ฟังก์ชั่นเชื่อมต่อwi
   Serial.println(WiFi.localIP());
 }
 
-int guess;
+int guess; // ตัวแปรที่แทนเลขที่แทน
 void callback(char *topic, byte *payload, unsigned int length) {  //ฟังก์ชั่นsubscribe
   Serial.print("Message arrived in topic: ");
   Serial.println(topic);
@@ -39,25 +39,21 @@ void callback(char *topic, byte *payload, unsigned int length) {  //ฟังก
   for (int i = 0; i < length; i++)
     {Serial.println((char) payload[i]-48);
     guess = payload[i]-48;
-  if(number==guess)
+  if(// หากเลขที่ทายและเลขที่สุ่มตรงกัน) 
   {
-    client.publish("Topic","true!");
-    number = random(9);
-    Serial.print("number guess :");
-    Serial.println(number);
-    client.publish("Topic","guess number!");
+    // แสดงข้อความ เท่ากัน
+    // เมื่อทายถูกจะทำอะไรต่อ
   }
-  else if(guess>number)
+  else if(// หากเลขที่ทายน้อยกว่า)
   {
-    client.publish("Topic","more!");
+  
   }
-    else if(guess<number)
+    else if(// หากเลขที่ทายมากกว่า)
   {
-    client.publish("Topic","less!");
+    
   }
     }
-  Serial.println();
-  Serial.println("-----------------------");
+
 }
 
 void reconnect() {  //ฟังก์ชั่นเชื่อมต่อmqtt
@@ -84,8 +80,10 @@ void setup()
   setup_wifi(); //เชื่อมต่อwifi
   reconnect();  //เชื่อมต่อmqtt
   client.subscribe("Topic");  //กำหนด topic ที่จะ subscribe
-  number = random(9) ;
-  client.publish("Topic","guess number!"); //กำหนด topic ที่จะ publish และ valu
+  
+  number = random(9) ; // สุ่มตัวเลขตั้งแต่ 0 - 9
+  
+  client.publish("Topic","guess number!"); //กำหนด topic ที่จะ publish เพื่อบอกให้เริ่มต้นทายค่า
   Serial.println(number);
 }
 
