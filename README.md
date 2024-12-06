@@ -1,3 +1,3 @@
->CE NEXT GEN#1
+>CE NEXT GEN
 /
 >Part IoT Session MQTT
