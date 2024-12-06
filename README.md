@@ -2,5 +2,7 @@
 /
 >Part IoT Session MQTT
 
-> Hint randomSeed(), random()
+
+Hint randomSeed(), random()
+
 *** Not Use only random() ***
